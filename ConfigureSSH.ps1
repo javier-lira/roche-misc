@@ -6,3 +6,6 @@ Set-Service sshd -StartupType Automatic
 New-Item -Path "HKLM:\SOFTWARE" -Name OpenSSH
 Set-Itemproperty -path 'HKLM:\SOFTWARE\OpenSSH' -Name 'DefaultShell' -value 'C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe'
 net start sshd
+    
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
