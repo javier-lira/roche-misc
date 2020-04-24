@@ -54,9 +54,12 @@ func main() {
 	defer file.Close()
 
 	log.Println("Start uploading file")
-	azblob.UploadFileToBlockBlob(ctx, file, blobURL,
+	_, err = azblob.UploadFileToBlockBlob(ctx, file, blobURL,
 		azblob.UploadToBlockBlobOptions{})
+	if err != nil {
+		log.Fatal("Blob was not uploaded successfully")
+	}
 	log.Println("Upload complete")
 	var url = blobURL.URL()
-	os.Stderr.WriteString(url.String())
+	log.Println(url.String())
 }
