@@ -1,0 +1,6 @@
+.*
+!.gitignore
+go.sum
+blobuploader/blobuploader
+cosmosdbtokentool/cosmosdbtokentool
+cosmosdbuploader/cosmosdbuploader

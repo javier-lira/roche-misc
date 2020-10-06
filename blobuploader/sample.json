@@ -1,0 +1,11 @@
+{
+    "azure": {
+        "storageAccountName": "tflirajastorage",
+        "storageAccountKey": "+dA5BquEEbSvblD3Dmjg5ZXq8XpLCvSAQwLwy3H/QTF40aYk70vV9RwfA6stAi0CXcGz2SHdcf4kMAJ7WgzqRA=="
+    },
+    "blob": {
+        "containerName": "installer2",
+        "blobName": "cobasIT1000Setup_2_10_00_0432.exe"
+    },
+    "source": "/Users/liraruej/workspace/cloud/windows/resources/cobasIT1000Setup_2_10_00_0432.exe"
+}
