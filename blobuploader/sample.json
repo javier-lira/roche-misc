@@ -1,7 +1,7 @@
 {
     "azure": {
         "storageAccountName": "tflirajastorage",
-        "storageAccountKey": "+dA5BquEEbSvblD3Dmjg5ZXq8XpLCvSAQwLwy3H/QTF40aYk70vV9RwfA6stAi0CXcGz2SHdcf4kMAJ7WgzqRA=="
+        "storageAccountKey": "KEY"
     },
     "blob": {
         "containerName": "installer2",
