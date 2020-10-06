@@ -13,13 +13,16 @@ import (
 	"github.com/javier-lira/roche-misc/cosmosdbtoken"
 )
 
-func processItem(done chan<- bool,
+func processItem(execute <-chan bool,
+	done chan<- bool,
 	idx int,
 	data interface{},
 	masterKeyBase64 string,
 	cosmosdbInstance string,
 	database string,
 	collection string) {
+
+	<-execute
 
 	verb := "POST"
 	resourceType := "docs"
@@ -39,12 +42,12 @@ func processItem(done chan<- bool,
 
 	if err != nil {
 		log.Println(idx, ": Error communicating to cosmosdb: ", err)
+	} else {
+		log.Println(idx, ": ", resp.Status)
+		defer resp.Body.Close()
+		body, _ := ioutil.ReadAll(resp.Body)
+		log.Println(idx, ": ", string(body))
 	}
-	log.Println(idx, ": ", resp.Status)
-	defer resp.Body.Close()
-	body, err := ioutil.ReadAll(resp.Body)
-	log.Println(idx, ": ", string(body))
-
 	done <- true
 }
 
@@ -81,11 +84,17 @@ func main() {
 	json.Unmarshal(jsonFileContent, &array)
 
 	done := make(chan bool, len(array))
+	execute := make(chan bool, 10)
 	for idx, item := range array {
-		go processItem(done, idx, item, *masterKeyBase64, *cosmosdbInstance, *database, *collection)
+		go processItem(execute, done, idx, item, *masterKeyBase64, *cosmosdbInstance, *database, *collection)
+	}
+
+	for i := 0; i < 10; i++ {
+		execute <- true
 	}
 
 	for i := 0; i < len(array); i++ {
 		<-done
+		execute <- true
 	}
 }
