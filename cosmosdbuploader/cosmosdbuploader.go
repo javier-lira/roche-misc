@@ -9,6 +9,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"time"
 
 	"github.com/javier-lira/roche-misc/cosmosdbtoken"
 )
@@ -48,6 +49,8 @@ func processItem(execute <-chan bool,
 		body, _ := ioutil.ReadAll(resp.Body)
 		log.Println(idx, ": ", string(body))
 	}
+
+	time.Sleep(100 * time.Millisecond)
 	done <- true
 }
 
