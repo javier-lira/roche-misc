@@ -58,6 +58,11 @@ func main() {
 
 	flag.Parse()
 
+	if flag.NFlag() != 6 {
+		fmt.Println("Not all parameters have been set. Please use -h for more information")
+		os.Exit(1)
+	}
+
 	f, err := os.OpenFile(*logFile, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
 	if err != nil {
 		log.Fatalf("error opening file: %v", err)
@@ -65,11 +70,6 @@ func main() {
 	defer f.Close()
 
 	log.SetOutput(f)
-
-	if flag.NFlag() != 6 {
-		log.Println("Not all parameters have been set. Please use -h for more information")
-		os.Exit(1)
-	}
 
 	jsonFileContent, err := ioutil.ReadFile(*jsonFile)
 	if err != nil {
