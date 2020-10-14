@@ -50,7 +50,7 @@ func processItem(execute <-chan bool,
 		log.Println(idx, ": ", string(body))
 	}
 
-	time.Sleep(100 * time.Millisecond)
+	time.Sleep(300 * time.Millisecond)
 	done <- true
 }
 
