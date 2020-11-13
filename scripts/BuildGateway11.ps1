@@ -19,18 +19,18 @@ Get-ChildItem ./AzCopy/*/azcopy.exe | Move-Item -Destination "C:\AzCopy\AzCopy.e
 
 # Download gateway source packages
 C:\AzCopy\AzCopy.exe login --identity
-$iconnectgwUrl = $BlobStorageUrl + "/gateway/iconnectgw.zip"
+$iconnectgwUrl = $BlobStorageUrl + "gateway/iconnectgw.zip"
 C:\AzCopy\AzCopy.exe copy $iconnectgwUrl .
 Expand-Archive ./iconnectgw.zip ./iconnectgw -Force
-$emrgwUrl = $BlobStorageUrl + "/gateway/emrgw.zip"
+$emrgwUrl = $BlobStorageUrl + "gateway/emrgw.zip"
 C:\AzCopy\AzCopy.exe copy $emrgwUrl .
 Expand-Archive ./emrgw.zip ./emrgw -Force
-$gatewaykeyscalersolutionUrl = $BlobStorageUrl + "/gateway/gatewaykeyscalersolution.zip"
+$gatewaykeyscalersolutionUrl = $BlobStorageUrl + "gateway/gatewaykeyscalersolution.zip"
 C:\AzCopy\AzCopy.exe copy $gatewaykeyscalersolutionUrl .
 Expand-Archive ./gatewaykeyscalersolution.zip ./gatewaykeyscalersolution -Force
-$uiUrl = $BlobStorageUrl + "/gateway/UI.zip"
+$uiUrl = $BlobStorageUrl + "gateway/UI.zip"
 C:\AzCopy\AzCopy.exe copy $uiUrl .
-$gadUrl = $BlobStorageUrl + "/gateway/GAD.zip"
+$gadUrl = $BlobStorageUrl + "gateway/GAD.zip"
 C:\AzCopy\AzCopy.exe copy $gadUrl .
 
 #Download WixToolset 3.11
@@ -178,7 +178,7 @@ popd
 
 $date = $(Get-Date -UFormat "%Y%m%d");
 $version = $GatewayVersion
-$driverInstallerContainer = $BlobStorageUrl + "/driverinstaller"
+$driverInstallerContainer = $BlobStorageUrl + "driverinstaller"
 $poczipStorageUrl = $driverInstallerContainer + "/poc/" + $date + "/" + $version + "/POC.zip"
 $pochashStorageUrl = $driverInstallerContainer + "/poc/" + $date + "/" + $version + "/hashvalue_POC.txt"
 $emrzipStorageUrl = $driverInstallerContainer + "/emr/" + $date + "/" + $version + "/EMR.zip"
