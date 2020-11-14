@@ -2,6 +2,7 @@ param($BlobStorageUrl, $CertPwd, $GatewayVersion)
 
 # Install VS2017 build tools for C++
 md -Path c:\tmp -Force
+pushd c:\tmp
 $Url = 'https://aka.ms/vs/15/release/vs_buildtools.exe'
 $Exe = "vs_buildtools.exe"
 $Dest = "c:\\tmp\\" + $Exe
@@ -195,3 +196,5 @@ C:\AzCopy\AzCopy.exe copy .\Output\hashvalue_EMR.txt $emrhashStorageUrl
 C:\AzCopy\AzCopy.exe copy .\Output\DMS.zip $dmszipStorageUrl
 C:\AzCopy\AzCopy.exe copy .\Output\hashvalue_DMS.txt $dmshashStorageUrl
 C:\AzCopy\AzCopy.exe copy .\Output\emrconfig.zip $emrconfigStorageUrl
+
+popd
